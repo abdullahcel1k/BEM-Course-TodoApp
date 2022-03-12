@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Yazılım Mektebi | Todo App</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">
+        <span class="title">YAZILIM MEKTEBİ TODO APP</span>
+        <img src="./img/insert-icon.svg" onclick="toggleModal()"/>
+      </div>
+      <ul id="todoItems" class="todos">
+      </ul>
+      <div id="todoFormModal" class="modal">
+        <div id="modalBody" class="modal-body">
+          <form id="todoForm">
+            <input id="id" hidden />
+            <input
+              name="title"
+              class="form-control input"
+              placeholder="Başlık"
+            />
+            <textarea
+              name="desc"
+              class="form-control textarea"
+              placeholder="Açıklama"
+            ></textarea>
+            <button class="save-btn" type="button" onclick="addTodo()">
+              <img src="img/checked.svg" />KAYDET
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <script src="app.js"></script>
+  </body>
+</html>

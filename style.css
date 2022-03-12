@@ -1,0 +1,243 @@
+:root {
+  --app-gray: #707070;
+  --app-pink: #c361ff;
+  --app-pink-dark: #8b00e170;
+  --corner: 20px;
+}
+
+@font-face {
+  font-family: "Nunito Sans";
+  src: url("fonts/Nunito_Sans/NunitoSans-Regular.ttf");
+}
+@font-face {
+  font-family: "Nunito Sans";
+  src: url("fonts/Nunito_Sans/NunitoSans-Bold.ttf");
+  font-weight: bold;
+}
+@font-face {
+  font-family: "Nunito Sans";
+  src: url("fonts/Nunito_Sans/NunitoSans-SemiBold.ttf");
+  font-weight: 600;
+}
+@font-face {
+  font-family: "Nunito Sans";
+  src: url("fonts/Nunito_Sans/NunitoSans-Black.ttf");
+  font-weight: 900;
+}
+
+body {
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  margin-top: 5%;
+}
+
+.container {
+  width: 375px;
+  height: 812px;
+  border-radius: var(--corner);
+  box-shadow: 5px 5px 15px var(--app-gray);
+}
+
+.header {
+  position: absolute;
+  width: inherit;
+  height: 200px;
+  background-image: url("./img/todo-bg.svg");
+  border-radius: var(--corner);
+}
+
+.header > img {
+  position: absolute;
+  bottom: 0;
+  right: 20px;
+  cursor: pointer;
+}
+
+.header > .title {
+  position: relative;
+  color: white;
+  font-size: 36px;
+  font-weight: bold;
+  top: 20px;
+  left: 20px;
+  padding-right: 20px;
+}
+
+.todos {
+  position: absolute;
+  width: inherit;
+  margin-top: 210px;
+  padding-left: 0;
+  height: 550px;
+  max-height: 550px;
+  overflow-y: auto;
+}
+
+.none-todos {
+  top: 40%;
+  position: absolute;
+  left: 3%;
+  color: var(--app-pink);
+  font-size: 32px;
+  font-weight: bold;
+}
+
+.todo-item {
+  display: flex;
+  flex-direction: row;
+  height: 90px;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.todo-item.complete {
+  background-color: #ebe8ed;
+  transition: all 0.6s;
+}
+
+.todo-item.complete .todo-item-check {
+  background-color: var(--app-pink);
+  border: 2px solid var(--app-pink-dark);
+}
+
+.todo-item.complete .todo-item-title {
+  text-decoration: line-through;
+}
+
+.todo-item-check {
+  cursor: pointer;
+  width: 20px;
+  height: 20px;
+  border: 2px solid var(--app-gray);
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
+.todo-item-details {
+  width: 250px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.remove-todo {
+  cursor: pointer;
+}
+
+.todo-item-title {
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.todo-item-desc {
+  display: block;
+  width: 250px;
+  font-size: 19px;
+  color: var(--app-gray);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.insert {
+  display: flex;
+  padding: 0 10px;
+}
+
+.insert > input {
+  font-size: 32px;
+  border: none;
+  width: 95%;
+  margin-left: 5%;
+  color: var(--app-pink);
+}
+
+.insert > input::placeholder {
+  color: var(--app-pink);
+  opacity: 1;
+}
+
+.insert > input:focus-visible {
+  outline: none;
+}
+
+.modal {
+  display: none;
+  position: relative;
+  width: inherit;
+  height: inherit;
+  background-color: #00000030;
+  border-radius: var(--corner);
+}
+
+.modal.show {
+  display: block;
+  animation-duration: 1s;
+  animation-name: openModal;
+}
+
+@keyframes openModal {
+  from {
+    height: 0;
+  }
+
+  to {
+    height: 100%;
+  }
+}
+
+.modal-body {
+  display: flex;
+  flex-direction: column;
+  height: 250px;
+  position: absolute;
+  background-color: white;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding-top: 1rem;
+  border-radius: 20px;
+}
+
+.form-control {
+  width: 90%;
+  margin-left: 5%;
+  border: 1px solid var(--app-gray);
+  background-color: #f9f9f9;
+  color: black;
+  font-size: 23px;
+}
+
+.form-control.input {
+  height: 40px;
+  margin-bottom: 20px;
+}
+
+.form-control.textarea {
+  height: 120px;
+}
+
+.form-control::placeholder {
+  color: #afafaf;
+}
+
+.save-btn {
+  position: absolute;
+  cursor: pointer;
+  left: 0;
+  bottom: 20px;
+  width: 92%;
+  margin-left: 5%;
+  background-color: var(--app-pink);
+  color: white;
+  border: 2px solid var(--app-pink-dark);
+  font-weight: 900;
+  font-size: 20px;
+}
+
+.save-btn > img {
+  margin-right: 1rem;
+}
