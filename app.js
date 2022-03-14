@@ -28,12 +28,10 @@ const uniqueIdGenerator = () => {
 
 // -todos listesine yani ul tagına her bir todo li item'ını ekler
 const insertTodoItemToList = (todoItem) => {
-  const listItem = `<li class="todo-item ${
-    todoItem.isComplete ? "complete" : ""
-  }" data-id="${todoItem.id}">
-  <div class="todo-item-check" data-id="${
-    todoItem.id
-  }" onclick="completeTask(this)">
+  const listItem = `<li class="todo-item ${todoItem.isComplete ? "complete" : ""
+    }" data-id="${todoItem.id}">
+  <div class="todo-item-check" data-id="${todoItem.id
+    }" onclick="completeTask(this)">
     <img src="img/checked.svg" />
   </div>
   <div class="todo-item-details">
@@ -89,17 +87,25 @@ const completeTask = (e) => {
   }
 };
 
+const showNoneItemsHtml = () => {
+  const noneTodos = `<li class="none-todos">
+  Henüz bir iş eklemediniz..
+</li>`;
+  todoItemsEl.insertAdjacentHTML("beforeend", noneTodos);
+}
+
 // delete ikonuna tıklanan elemanı htmlden ve todos arrayden siler bunu LS'e kaydeder
 const removeTask = (id) => {
-  const todoItemsEl = document.getElementsByClassName("todo-item");
-
-  for (let i = 0; i < todoItemsEl.length; i++) {
-    if (todoItemsEl[i].dataset.id == id) todoItemsEl[i].remove();
+  for (let i = 0; i < todoItemsEl.children.length; i++) {
+    if (todoItemsEl.children[i].dataset.id == id) todoItemsEl.children[i].remove();
   }
 
   todos = todos.filter((item) => {
     if (item.id != id) return item;
   });
+
+  if (todos.length < 1) showNoneItemsHtml();
+
   saveTodosToLS();
 };
 
@@ -113,14 +119,12 @@ const listTodoItems = () => {
 
 const todoItemsLS = localStorage.getItem("todoItemsLS");
 
+
 // todoItemsLS değişkeni Localstorage'de var mı ? varsa bunları yap
 if (todoItemsLS) {
   todos = JSON.parse(todoItemsLS);
   if (todos.length > 0) listTodoItems();
   else {
-    const noneTodos = `<li class="none-todos">
-    Henüz bir iş eklemediniz..
-  </li>`;
-    todoItemsEl.insertAdjacentHTML("beforeend", noneTodos);
+    showNoneItemsHtml();
   }
 }
